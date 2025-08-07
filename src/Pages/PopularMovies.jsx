@@ -1,22 +1,26 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../index.css";
 
 const PopularMovies = () => {
   const [getMovies, setGetMovies] = useState([]);
+    
 
-  const fetchMovies = async () => {
-    const res = await axios.get(
-      "https://api.themoviedb.org/3/movie/popular?include_adult=false&language=en-US&page=1&api_key=1ef33d0988889fd4f6c374211d20e38c"
-    );
-    console.log(res.data.results);
-    setGetMovies(res.data.results);
-  };
+    const fetchMovies = async () => {
+      const res = await axios.get(
+        "https://api.themoviedb.org/3/movie/popular?include_adult=false&language=en-US&page=1&api_key=1ef33d0988889fd4f6c374211d20e38c"
+      );
+      console.log(res.data.results);
+      setGetMovies(res.data.results);
+    };
+  
+    useEffect(() => {
+      fetchMovies();
+    }, []);
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+
+    
+
 
   return (
     <div className=" my-[200px]">
@@ -36,6 +40,7 @@ const PopularMovies = () => {
       </div>
     </div>
   );
-};
+}
+;
 
 export default PopularMovies;
